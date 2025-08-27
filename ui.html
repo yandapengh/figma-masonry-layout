@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Masonry Layout</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #333;
+      margin-top: 0;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #555;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #0069d9;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    .columns-input {
+      display: flex;
+      align-items: center;
+    }
+    .columns-input input {
+      flex: 1;
+      margin-right: 10px;
+    }
+    .columns-input select {
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Masonry Layout</h2>
+    
+    <div class="section">
+      <div class="section-title">布局设置</div>
+      <div class="form-group">
+        <label for="columnCount">列数:</label>
+        <div class="columns-input">
+          <input type="number" id="columnCount" value="" min="1" max="12" placeholder="自动">
+          <select id="columnType">
+            <option value="auto">自动</option>
+            <option value="fixed">固定</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="horizontalGutter">水平间距 (px):</label>
+        <input type="number" id="horizontalGutter" value="20" min="0">
+      </div>
+      
+      <div class="form-group">
+        <label for="verticalGutter">垂直间距 (px):</label>
+        <input type="number" id="verticalGutter" value="20" min="0">
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">对齐选项</div>
+      <div class="form-group">
+        <label for="alignment">对齐方式:</label>
+        <select id="alignment">
+          <option value="top">顶部对齐</option>
+          <option value="height">高度优先排列</option>
+        </select>
+      </div>
+    </div>
+    
+    <button id="apply">应用布局</button>
+  </div>
+
+  <script>
+    // Set default value for columnType
+    document.getElementById('columnType').value = 'auto';
+    
+    document.getElementById('apply').onclick = () => {
+      const columnType = document.getElementById('columnType').value;
+      let columnCount;
+      
+      if (columnType === 'auto') {
+        columnCount = 'auto';
+      } else {
+        columnCount = parseInt(document.getElementById('columnCount').value);
+        if (isNaN(columnCount) || columnCount < 1) {
+          columnCount = 'auto';
+        } else {
+          columnCount = Math.min(12, Math.max(1, columnCount));
+        }
+      }
+      
+      const horizontalGutter = parseInt(document.getElementById('horizontalGutter').value);
+      const verticalGutter = parseInt(document.getElementById('verticalGutter').value);
+      const alignment = document.getElementById('alignment').value;
+      
+      const settings = {
+        columnCount,
+        horizontalGutter,
+        verticalGutter,
+        alignment
+      };
+      
+      parent.postMessage({ pluginMessage: { type: 'apply-layout', settings } }, '*');
+    };
+    
+    // Handle column type change
+    document.getElementById('columnType').onchange = (e) => {
+      const columnCountInput = document.getElementById('columnCount');
+      if (e.target.value === 'auto') {
+        columnCountInput.value = '';
+        columnCountInput.placeholder = '自动';
+      } else {
+        columnCountInput.placeholder = '输入数字';
+        if (columnCountInput.value === '') {
+          columnCountInput.value = '3';
+        }
+      }
+    };
+  </script>
+</body>
+</html>
