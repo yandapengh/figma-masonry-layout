@@ -68,27 +68,6 @@ This plugin is your new best friend! It automatically arranges selected elements
    - Click "Apply Layout" | 点击"应用布局"
    - Watch in awe as your elements perfectly arrange themselves | 惊叹地看着你的元素完美地自动排列
 
-## 🎮 Pro Tips | 专业技巧
-
-- **🎯 Selection Matters**: Select elements in the order you want them prioritized | **选择很重要**：按你想要的优先级顺序选择元素
-- **📐 Auto-Column Magic**: The plugin analyzes your elements' average width to determine optimal columns | **自动列数魔法**：插件分析元素的平均宽度来确定最佳列数
-- **🔄 Randomization**: Elements are shuffled for a more natural, Pinterest-like feel | **随机化**：元素会被打乱以获得更自然的Pinterest风格感觉
-- **⚡ Bulk Operations**: Select dozens of elements at once - the plugin handles it like a champ | **批量操作**：一次选择几十个元素 - 插件轻松搞定
-
-## 🤔 FAQ | 常见问题
-
-**Q: Can I undo the layout?** | **问：我能撤销布局吗？**  
-A: Of course! Figma's undo (Ctrl/Cmd + Z) works perfectly. | 答：当然可以！Figma的撤销功能（Ctrl/Cmd + Z）完美适用。
-
-**Q: What if I don't like the random arrangement?** | **问：如果我不喜欢随机排列怎么办？**  
-A: Just run the plugin again! Each time gives you a different arrangement. | 答：再运行一次插件就行！每次都会给你不同的排列。
-
-**Q: Does it work with locked elements?** | **问：它能处理锁定的元素吗？**  
-A: The plugin respects Figma's selection, so unlock elements first. | 答：插件遵循Figma的选择规则，所以先解锁元素。
-
-**Q: Can I use this for presentations?** | **问：我能用这个做演示吗？**  
-A: That's literally why this plugin exists! Perfect for design reviews and showcases. | 答：这就是这个插件存在的原因！非常适合设计评审和展示。
-
 ## 🏗️ Technical Details | 技术细节
 
 ### File Structure | 文件结构
